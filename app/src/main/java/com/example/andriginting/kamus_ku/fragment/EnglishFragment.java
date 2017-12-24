@@ -4,6 +4,7 @@ package com.example.andriginting.kamus_ku.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
@@ -14,6 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.andriginting.kamus_ku.R;
+import com.example.andriginting.kamus_ku.adapter.KamusAdapter;
+import com.example.andriginting.kamus_ku.model.KamusEnglishModel;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +30,9 @@ public class EnglishFragment extends Fragment implements SearchView.OnQueryTextL
 
     @BindView(R.id.recycler_english)
     RecyclerView recyclerViewEnglish;
+
+    KamusAdapter adapter;
+    ArrayList<KamusEnglishModel> kamusEnglishModels = new ArrayList<>();
     public EnglishFragment() {
         // Required empty public constructor
     }
@@ -36,6 +44,12 @@ public class EnglishFragment extends Fragment implements SearchView.OnQueryTextL
         // Inflate the layout for this fragment
         View v =inflater.inflate(R.layout.fragment_english, container, false);
         ButterKnife.bind(this,v);
+
+
+
+        recyclerViewEnglish.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new KamusAdapter(kamusEnglishModels,getContext());
+        recyclerViewEnglish.setAdapter(adapter);
         return v;
     }
 
@@ -54,6 +68,7 @@ public class EnglishFragment extends Fragment implements SearchView.OnQueryTextL
 
     @Override
     public boolean onQueryTextSubmit(String query) {
+
         return false;
     }
 

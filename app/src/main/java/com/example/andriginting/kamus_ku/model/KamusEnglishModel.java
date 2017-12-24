@@ -7,22 +7,22 @@ import android.os.Parcelable;
  * Created by Andri Ginting on 12/24/2017.
  */
 
-public class KamusModel implements Parcelable{
+public class KamusEnglishModel implements Parcelable{
     private int id;
     private String words;
     private String details;
 
-    public KamusModel(){
+    public KamusEnglishModel(){
 
     }
 
-    public KamusModel(int id, String words, String details) {
+    public KamusEnglishModel(int id, String words, String details) {
         this.id = id;
         this.words = words;
         this.details = details;
     }
 
-    public KamusModel(String words, String details) {
+    public KamusEnglishModel(String words, String details) {
         this.words = words;
         this.details = details;
     }
@@ -64,21 +64,21 @@ public class KamusModel implements Parcelable{
         dest.writeString(this.details);
     }
 
-    protected KamusModel(Parcel in) {
+    protected KamusEnglishModel(Parcel in) {
         this.id = in.readInt();
         this.words = in.readString();
         this.details = in.readString();
     }
 
-    public static final Parcelable.Creator<KamusModel> CREATOR = new Parcelable.Creator<KamusModel>() {
+    public static final Parcelable.Creator<KamusEnglishModel> CREATOR = new Parcelable.Creator<KamusEnglishModel>() {
         @Override
-        public KamusModel createFromParcel(Parcel source) {
-            return new KamusModel(source);
+        public KamusEnglishModel createFromParcel(Parcel source) {
+            return new KamusEnglishModel(source);
         }
 
         @Override
-        public KamusModel[] newArray(int size) {
-            return new KamusModel[size];
+        public KamusEnglishModel[] newArray(int size) {
+            return new KamusEnglishModel[size];
         }
     };
 }
