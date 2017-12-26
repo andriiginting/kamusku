@@ -81,4 +81,23 @@ public class KamusEnglishIndonesiaHelper  {
         stmt.execute();
         stmt.clearBindings();
     }
+    public ArrayList<KamusEnglishModel> loadDataEnglish(){
+        Cursor cursor = database.query(TABLE_ENGLISH_INDONESIA, new String[]{WORDS_ENGLISH}, null, null,null, null,WORDS_ENGLISH);
+        cursor.moveToFirst();
+        ArrayList<KamusEnglishModel> arrayList = new ArrayList<>();
+        KamusEnglishModel kamusEnglishModel;
+        if(cursor.getCount()>0){
+            do{
+                kamusEnglishModel = new KamusEnglishModel();
+                kamusEnglishModel.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
+                kamusEnglishModel.setWords(cursor.getString(cursor.getColumnIndexOrThrow(WORDS_ENGLISH)));
+                kamusEnglishModel.setDetails(cursor.getString(cursor.getColumnIndexOrThrow(DETAILS_ENGLISH)));
+
+                arrayList.add(kamusEnglishModel);
+                cursor.moveToNext();
+            }while (!cursor.isAfterLast());
+        }
+        cursor.close();
+        return arrayList;
+    }
 }

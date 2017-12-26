@@ -8,7 +8,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.andriginting.kamus_ku.R;
@@ -31,6 +30,14 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        if(savedInstanceState == null){
+            Fragment fragment = new EnglishFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.content_main, fragment)
+                    .commit();
+            getSupportActionBar().setTitle(R.string.eng_id);
+        }
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
@@ -45,25 +52,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -72,10 +60,9 @@ public class MainActivity extends AppCompatActivity
         String judul = "";
         Fragment fragment = null;
         if (id == R.id.nav_eng_id) {
-            // Handle the camera ction
             judul ="English-Indonesia";
             fragment = new EnglishFragment();
-        } else if(id == R.id.nav_eng_id) {
+        } else if(id == R.id.nav_id_eng) {
             judul = "Indonesia-English";
             fragment = new IndoFragment();
         }

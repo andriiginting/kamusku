@@ -40,8 +40,8 @@ public class SplashScreen extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            englishIndonesia = new KamusEnglishIndonesiaHelper(getApplicationContext());
-            indonesiaEnglish = new KamusIndonesiaEnglishHelper(getApplicationContext());
+            englishIndonesia = new KamusEnglishIndonesiaHelper(SplashScreen.this);
+            indonesiaEnglish = new KamusIndonesiaEnglishHelper(SplashScreen.this);
             firstPreference = new FirstPreference(SplashScreen.this);
         }
 
@@ -120,6 +120,7 @@ public class SplashScreen extends AppCompatActivity {
 
                 KamusEnglishModel kamusEnglishModel = new KamusEnglishModel(split[0], split[1]);
                 kamusEnglishModels.add(kamusEnglishModel);
+                count++;
             } while (baris != null);
         } catch (Exception e) {
             e.getMessage();
@@ -135,7 +136,7 @@ public class SplashScreen extends AppCompatActivity {
 
         try {
             Resources resources = getResources();
-            InputStream dataEnglishDict = resources.openRawResource(R.raw.english_indonesia);
+            InputStream dataEnglishDict = resources.openRawResource(R.raw.indonesia_english);
             reader = new BufferedReader(new InputStreamReader(dataEnglishDict));
 
             do {
@@ -144,6 +145,7 @@ public class SplashScreen extends AppCompatActivity {
 
                 KamusIndoModel kamusEnglishModel = new KamusIndoModel(split[0], split[1]);
                 kamusIndoModels.add(kamusEnglishModel);
+                count++;
             } while (baris != null);
         } catch (Exception e) {
             e.getMessage();
